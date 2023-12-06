@@ -1,15 +1,30 @@
-Source: template-repository
-Section: unknown
+Source: golang-k8s-sigs-yaml
+Maintainer: Debian Go Packaging Team <team+pkg-go@tracker.debian.org>
+Uploaders: Shengjing Zhu <zhsj@debian.org>,
+Section: golang
+Testsuite: autopkgtest-pkg-go
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Build-Depends: debhelper-compat (= 13),
+               dh-golang,
+Build-Depends-Indep: golang-any,
+                     golang-github-davecgh-go-spew-dev,
+                     golang-gopkg-yaml.v2-dev,
+Standards-Version: 4.6.0
+Vcs-Browser: https://salsa.debian.org/go-team/packages/golang-k8s-sigs-yaml
+Vcs-Git: https://salsa.debian.org/go-team/packages/golang-k8s-sigs-yaml.git
+Homepage: https://github.com/kubernetes-sigs/yaml
+Rules-Requires-Root: no
+XS-Go-Import-Path: sigs.k8s.io/yaml
 
-Package: template-repository
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Package: golang-k8s-sigs-yaml-dev
+Architecture: all
+Multi-Arch: foreign
+Depends: golang-gopkg-yaml.v2-dev,
+         ${misc:Depends},
+Description: better way to marshal and unmarshal YAML in Golang (library)
+ YAML marshaling and unmarshaling support for Go Build Status
+ .
+ kubernetes-sigs/yaml is a permanent fork of ghodss/yaml
+ (https://github.com/ghodss/yaml). Introduction A wrapper around go-yaml
+ (https://github.com/go-yaml/yaml) designed to enable a better way of
+ handling YAML when marshaling to and from structs.
