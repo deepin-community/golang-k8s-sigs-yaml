@@ -1,0 +1,21 @@
+From: Shengjing Zhu <zhsj@debian.org>
+Date: Thu, 15 Apr 2021 23:57:02 +0800
+Subject: Fix failed test on 32 bit arch
+
+---
+ yaml_test.go | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/yaml_test.go b/yaml_test.go
+index 9da43e1..117dda5 100644
+--- a/yaml_test.go
++++ b/yaml_test.go
+@@ -24,7 +24,7 @@ type MarshalTest struct {
+ func TestMarshal(t *testing.T) {
+ 	f32String := strconv.FormatFloat(math.MaxFloat32, 'g', -1, 32)
+ 	s := MarshalTest{"a", math.MaxInt64, math.MaxFloat32}
+-	e := []byte(fmt.Sprintf("A: a\nB: %d\nC: %s\n", math.MaxInt64, f32String))
++	e := []byte(fmt.Sprintf("A: a\nB: %d\nC: %s\n", int64(math.MaxInt64), f32String))
+ 
+ 	y, err := Marshal(s)
+ 	if err != nil {
